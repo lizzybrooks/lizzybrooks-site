@@ -1,0 +1,346 @@
+/* Lizzy Brooks — site styles
+   Colors are set once here; the dark set applies when a visitor's device is in dark mode. */
+
+/* Fonts. Both files sit in the main site folder next to this stylesheet. */
+
+/* Everything except the name: menu, page titles and body text */
+@font-face {
+  font-family: "Modern Sans";
+  src: url("ModernSans-Light.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* "Lizzy Brooks" and "Artist" */
+@font-face {
+  font-family: "Sketchtica";
+  src: url("Sketchtica.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --paper: #f4f5f3;
+  /* cool, silver-gelatin white */
+  --ink: #1e201f;
+  --muted: #676c69;
+  --rule: #d5d8d5;
+  --accent: #6b3f5e;
+  /* selenium-toned plum, used sparingly */
+  --font: "Modern Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* body text */
+  --text-weight: normal;
+  --title-font: var(--font);
+  /* menu and page titles */
+  --name-font: "Sketchtica", var(--font);
+  /* "Lizzy Brooks" and "Artist" */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #151716;
+    --ink: #e4e6e3;
+    --muted: #979c99;
+    --rule: #2d312f;
+    --accent: #cfa6c3;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-weight: var(--text-weight);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.side,
+h1 {
+  font-family: var(--title-font);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  padding: 0.5rem 1rem;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* ---------- layout: index column + work ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: 4rem;
+  max-width: 82rem;
+  margin: 0 auto;
+  padding: 3rem 2.5rem 2rem;
+}
+
+.side {
+  position: sticky;
+  top: 3rem;
+  align-self: start;
+}
+
+.name,
+.role {
+  font-family: var(--name-font);
+  font-weight: normal;
+}
+
+.name {
+  font-size: 1.375rem;
+  text-decoration: none;
+}
+
+.role {
+  margin: 0 0 2.25rem;
+  color: var(--muted);
+}
+
+.menu>summary {
+  display: none;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  margin: 0.1rem 0;
+}
+
+.menu a {
+  position: relative;
+  display: inline-block;
+  padding: 0.12rem 0;
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.menu a:hover {
+  color: var(--ink);
+}
+
+.menu a[aria-current="page"] {
+  color: var(--ink);
+}
+
+/* the current page is marked with a small, slightly imperfect circle */
+.menu a[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  left: -1.1rem;
+  top: 50%;
+  width: 0.5rem;
+  height: 0.46rem;
+  margin-top: -0.23rem;
+  border-radius: 52% 48% 50% 46%;
+  background: var(--accent);
+}
+
+.menu .pages {
+  margin-top: 1.5rem;
+}
+
+main {
+  min-width: 0;
+  padding-bottom: 3rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 0 0 2rem;
+}
+
+/* ---------- content ---------- */
+.prose {
+  max-width: 38rem;
+  margin: 2rem 0;
+}
+
+.source {
+  margin: 0.75rem 0 2.5rem;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  margin: 0 0 12px;
+}
+
+.row+ :not(.row) {
+  margin-top: 2rem;
+}
+
+.row figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.row img {
+  width: 100%;
+  background: var(--rule);
+}
+
+.video {
+  aspect-ratio: 16 / 9;
+  max-width: 56rem;
+  margin: 0 0 2rem;
+  background: var(--rule);
+}
+
+.video iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.credits {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25rem 1.5rem;
+}
+
+.credits dt {
+  color: var(--muted);
+}
+
+.credits dd {
+  margin: 0;
+}
+
+.hero {
+  margin: 0;
+  max-width: 750px;
+}
+
+.hero img {
+  width: 100%;
+  background: var(--rule);
+}
+
+.hero figcaption {
+  margin-top: 0.75rem;
+  color: var(--muted);
+}
+
+footer {
+  max-width: 82rem;
+  margin: 0 auto;
+  padding: 1.5rem 2.5rem 2.5rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* ---------- small screens ---------- */
+@media (max-width: 760px) {
+  body {
+    font-size: 17px;
+  }
+
+  .layout {
+    display: block;
+    padding: 1.5rem 16px 1rem;
+  }
+
+  .side {
+    position: static;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .role {
+    margin-bottom: 0.75rem;
+  }
+
+  .menu>summary {
+    display: list-item;
+    cursor: pointer;
+    color: var(--muted);
+    padding: 0.25rem 0;
+  }
+
+  .menu[open]>summary {
+    margin-bottom: 0.5rem;
+  }
+
+  .menu a[aria-current="page"]::before {
+    display: none;
+  }
+
+  .menu a[aria-current="page"] {
+    color: var(--accent);
+  }
+
+  .menu .pages {
+    margin-top: 0.75rem;
+  }
+
+  h1 {
+    font-size: 1.625rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .row {
+    flex-wrap: wrap;
+  }
+
+  .row figure {
+    flex-basis: 100% !important;
+  }
+
+  footer {
+    padding: 1rem 16px 2rem;
+  }
+}
